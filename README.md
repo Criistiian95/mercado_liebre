@@ -1,2 +1,2 @@
 # mercado_liebre
-Trabajo invidual de Meercado Liebre
+Trabajo invidual de Mercado Liebre
