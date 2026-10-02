@@ -1,9 +1,11 @@
 'use client';
 
 import { FormEvent, useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function LoginPage() {
   const [message, setMessage] = useState('');
+  const router = useRouter();
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -28,13 +30,19 @@ export default function LoginPage() {
 
     const data = await response.json();
     localStorage.setItem('ecommerce_token', data.token);
-    setMessage(`Sesión iniciada como ${data.user.name}`);
+
+    if (data.user.role === 'admin' || data.user.role === 'superadmin') {
+      router.push('/admin');
+      return;
+    }
+
+    setMessage('Tu usuario no tiene acceso al panel administrador.');
   }
 
   return (
     <main className="login">
       <h1>Administrar tienda</h1>
-      <p>Acceso para administradores y operadores.</p>
+      <p>Acceso para administradores del comercio.</p>
       <form onSubmit={submit}>
         <label className="field">
           Email
