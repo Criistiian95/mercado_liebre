@@ -34,3 +34,24 @@ docker-compose.v2.yml  MySQL local
 
 ## Próximos módulos
 Productos, categorías, variantes, stock, carrito, clientes, pedidos, pagos, envíos, cupones y métricas.
+
+## Permisos de administración
+
+### superadmin
+Administración global de la plataforma. Se usará para gestionar comercios y soporte general.
+
+### admin
+Administrador/propietario de un comercio. Actualmente puede:
+- crear y consultar categorías de su comercio;
+- crear y consultar productos de su comercio;
+- definir precio, stock inicial y stock mínimo;
+- ajustar stock;
+- consultar el historial de movimientos de stock.
+
+Todos los recursos quedan filtrados por `commerceId`.
+
+### operator
+Rol reservado para operaciones diarias. En una fase posterior tendrá permisos limitados, por ejemplo pedidos y movimientos de stock, sin acceso a configuración sensible.
+
+### customer
+Cuenta de comprador. No tiene acceso al panel administrativo.
